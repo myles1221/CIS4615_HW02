@@ -5,15 +5,17 @@
 //
 
 public class SomeObject {
- 
-  // Locks on the object's monitor
-  public synchronized void changeValue() {
-    // ...
+ private final Object lock = new Object(); // private final lock object
+ public void changeValue() {
+    synchronized (lock) { // Locks on the private Object
+      // ...
+    }
   }
+
   
   public static SomeObject lookup(String name) {
     // ...
-  }
+  
 }
  
 // Untrusted code
